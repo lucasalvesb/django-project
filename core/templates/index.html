@@ -15,8 +15,17 @@
   <body>
     <ul>
       {% for pessoa in pessoas %}
-        <li>{{ pessoa.id }} {{ pessoa.nome }} {{ pessoa.idade }} {{ pessoa.cpf }} {{ pessoa.email }}</li>
+        <li>{{ pessoa.id }} {{ pessoa.nome }} </li>
       {% endfor %}
     </ul>
+
+    <form action="{% url 'salvar' %}" method="POST">
+      <input type="text" name="name" />
+      <input type="text" name="age" />
+      <input type="text" name="cpf" />
+      <input type="text" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="address" />
+      <button type="submit">Enviar</button>
   </body>
 </html>
