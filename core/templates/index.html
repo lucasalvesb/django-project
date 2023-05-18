@@ -16,7 +16,15 @@
   <body>
     <ul>
       {% for person in people %}
-        <li>{{ person.id }} {{ person.name }} {{ person.age }} {{ person.cpf }} {{person.email}} {{person.phone}} {{person.address}} <a href="{% url 'edit' person.id %}">Edit</a></li>
+        <li>
+          {{ person.id }} 
+          {{ person.name }} 
+          {{ person.age }} 
+          {{ person.cpf }} 
+          {{person.email}} 
+          {{person.phone}} 
+          {{person.address}} 
+          <a href="{% url 'edit' person.id %}">Edit</a></li> <a href="{% url 'delete' person.id %}">Delete</a></li>
       {% endfor %}
     </ul>
 
