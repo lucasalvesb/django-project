@@ -1,17 +1,28 @@
-from django.shortcuts import render
-from .models import Pessoa
+from django.shortcuts import render, redirect
+from .models import Person
 
 def home(request):
-    pessoas = Pessoa.objects.all()
-    return render(request, "index.html", {"pessoas": pessoas})
+    people = Person.objects.all()
+    return render(request, "index.html", {"people": people})
 
-def salvar(request):
+def save(request):
     vname = request.POST.get("name")
     vage = request.POST.get("age")
     vcpf = request.POST.get("cpf")
     vemail = request.POST.get("email")
     vphone = request.POST.get("phone")
     vaddress = request.POST.get("address")
-    Pessoa.objects.create(name=vname, age=vage, cpf=vcpf, email=vemail, phone=vphone, address=vaddress)
-    pessoas = Pessoa.objects.all()
-    return render(request, "index.html", {"pessoas": pessoas})
+    Person.objects.create(name=vname, age=vage, cpf=vcpf, email=vemail, phone=vphone, address=vaddress)
+    people = Person.objects.all()
+    return render(request, "index.html", {"people": people})
+
+def edit(request, id):
+    person = Person.objects.get(id=id)
+    return render(request, "update.html", {"person": person})
+
+def update(request, id):
+    vname = request.POST.get("name")
+    person = Person.objects.get(id=id)
+    person.name = vname
+    person.save() 
+    return redirect(home)

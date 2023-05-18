@@ -15,12 +15,12 @@
   </head>
   <body>
     <ul>
-      {% for pessoa in pessoas %}
-        <li>{{ pessoa.id }} {{ pessoa.name }} {{ pessoa.age }} {{ pessoa.cpf }} {{pessoa.email}} {{pessoa.phone}} {{pessoa.address}} </li>
+      {% for person in people %}
+        <li>{{ person.id }} {{ person.name }} {{ person.age }} {{ person.cpf }} {{person.email}} {{person.phone}} {{person.address}} <a href="{% url 'edit' person.id %}">Edit</a></li>
       {% endfor %}
     </ul>
 
-    <form action="{% url 'salvar' %}" method="POST">
+    <form action="{% url 'save' %}" method="POST">
       {% csrf_token %}
       <label> Name </label> <input type="text" name="name" /> 
       <label> Age </label> <input type="text" name="age" /> 

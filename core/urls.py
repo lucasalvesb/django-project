@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, salvar
+from .views import home, save, edit, update
 
 urlpatterns = [
     path('', home),
-    path('salvar/', salvar, name="salvar"),
+    path('save/', save, name="save"),
+    path('edit/<int:id>', edit, name="edit"),
+    path('update/<int:id>', update, name="update"),
 ]
