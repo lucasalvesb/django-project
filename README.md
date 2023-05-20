@@ -4,10 +4,10 @@
 
 ## Sumário
 
-* [Tecnologias utilizadas](https://github.com/lucasalvesb/dota-guides/#tecnologias-utilizadas)
-* [Instruções para executar o projeto](https://github.com/lucasalvesb/dota-guides#instru%C3%A7%C3%B5es-para-executar-o-projeto)
-* [Desenvolvimento](https://github.com/lucasalvesb/dota-guides/#desenvolvimento)
-* [Resultado](https://github.com/lucasalvesb/dota-guides/#resultado)
+* [Tecnologias utilizadas](https://github.com/lucasalvesb/django-project/#tecnologias-utilizadas)
+* [Instruções para executar o projeto](https://github.com/lucasalvesb/django-project#instru%C3%A7%C3%B5es-para-executar-o-projeto)
+* [Desenvolvimento](https://github.com/lucasalvesb/django-project/#desenvolvimento)
+* [Resultado](https://github.com/lucasalvesb/django-project/#resultado)
 
 ## Tecnologias utilizadas
 
