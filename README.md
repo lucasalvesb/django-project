@@ -74,7 +74,7 @@ Foram utilizados do Google Fonts.
 
 ## Resultado
 
-### ![Página inicial e de cadastro](https://github.com/lucasalvesb/django-project/assets/71532408/e53625ed-c320-4018-a5b5-66170a83c019)
-### ![Página de edição](https://github.com/lucasalvesb/django-project/assets/71532408/f5d8e57e-25d2-42d4-82f7-51285c1e620b)
-### ![Efeito hover nos botões](https://github.com/lucasalvesb/django-project/assets/71532408/4ee512d4-7bf7-44f7-a71e-ced8320b1be4)
+### Página inicial e de cadastro ![image](https://github.com/lucasalvesb/django-project/assets/71532408/e53625ed-c320-4018-a5b5-66170a83c019)
+### Página de edição![image](https://github.com/lucasalvesb/django-project/assets/71532408/f5d8e57e-25d2-42d4-82f7-51285c1e620b)
+### Efeito hover nos botões![image](https://github.com/lucasalvesb/django-project/assets/71532408/4ee512d4-7bf7-44f7-a71e-ced8320b1be4)
 
