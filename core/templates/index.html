@@ -10,12 +10,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>Client register</title>
+    <title>Client Register</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
     />
     {% load static %}
     <link
@@ -24,7 +22,7 @@
     />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar">
       <div class="container">
         <a
           class="navbar-brand"
@@ -34,18 +32,11 @@
         <button
           class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse"
-          id="navbarNav"
-        >
+        <div class="navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a
@@ -72,89 +63,206 @@
         </div>
       </div>
     </nav>
-    <ul class="list-group list-styles">
-      {% for person in people %}
-      <li class="list-group-item">
-        {{ person.id }} - {{ person.name }}
-        <a
-          href="{% url 'edit' person.id %}"
-          class="btn btn-primary"
-          >Edit</a
-        >
-        <a
-          href="{% url 'delete' person.id %}"
-          class="btn btn-danger"
-          >Delete</a
-        >
-      </li>
-      {% endfor %}
-    </ul>
 
-    <form
-      action="{% url 'save' %}"
-      method="POST"
-    >
-      {% csrf_token %}
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Age</label>
-            <input
-              type="text"
-              class="form-control"
-              name="age"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">CPF</label>
-            <input
-              type="text"
-              class="form-control"
-              name="cpf"
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input
-              type="text"
-              class="form-control"
-              name="email"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Phone</label>
-            <input
-              type="text"
-              class="form-control"
-              name="phone"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Address</label>
-            <input
-              type="text"
-              class="form-control"
-              name="address"
-            />
-          </div>
-        </div>
+    <div class="container">
+      <div class="table-container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in people %}
+            <tr>
+              <td>{{ person.name }}</td>
+              <td>{{ person.age }}</td>
+              <td>{{ person.cpf }}</td>
+              <td>{{ person.email }}</td>
+              <td>{{ person.phone }}</td>
+              <td>{{ person.address }}</td>
+              <td>
+                <a
+                  href="{% url 'edit' person.id %}"
+                  class="btn btn-primary"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'delete' person.id %}"
+                  class="btn btn-danger"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save
-      </button>
-    </form>
+      <div class="form-container">
+        <form
+          action="{% url 'save' %}"
+          method="POST"
+          class="new-person-form"
+          onsubmit="return validateForm()"
+        >
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="age"
+                  id="age"
+                  min="0"
+                  max="120"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cpf"
+                  id="cpf"
+                  pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="phone"
+                  id="phone"
+                  pattern="^\+\d{1,3}\s?\(?\d{1,4}\)?\s?\d{1,4}-?\d{1,9}$"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  id="address"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function validateForm() {
+        // Get form field values
+        const name = document.getElementById('name').value
+        const age = document.getElementById('age').value
+        const cpf = document.getElementById('cpf').value
+        const phone = document.getElementById('phone').value
+
+        // Regular expression patterns for validations
+        const nameRegex = /^[a-zA-Z\s]+$/
+        const phoneRegex = /^\+\d{1,3}\s?\(?\d{1,4}\)?\s?\d{1,4}-?\d{1,9}$/
+
+        // Perform validations
+        if (!nameRegex.test(name)) {
+          alert('Name should only contain letters and spaces.')
+          return false
+        }
+
+        if (age > 120) {
+          alert('Age should be less than or equal to 120.')
+          return false
+        }
+
+        if (!phoneRegex.test(phone)) {
+          alert(
+            "Phone number should be in the format: '+CountryCode (AreaCode) PhoneNumber'."
+          )
+          return false
+        }
+
+        // Return true to submit the form
+        return true
+      }
+
+      // Function to format CPF
+      function formatCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '') // Remove non-digit characters
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2') // Insert first dot
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2') // Insert second dot
+        cpf = cpf.replace(/(\d{3})(\d{2})$/, '$1-$2') // Insert dash
+        return cpf
+      }
+
+      // Event listener for CPF input
+      document
+        .getElementById('cpf')
+        .addEventListener('input', function (event) {
+          let input = event.target
+          input.value = formatCPF(input.value)
+
+          if (input.value.length === 14) {
+            document.getElementById('email').focus()
+          }
+        })
+
+      // Function to format phone number
+      function formatPhoneNumber(phone) {
+        phone = phone.replace(/\D/g, '') // Remove non-digit characters
+        phone = phone.replace(
+          /^(\d{2})(\d{2})(\d{5})(\d{4})$/,
+          '+$1 ($2) $3-$4'
+        ) // Apply the desired format
+        return phone
+      }
+
+      // Event listener for phone number input
+      document
+        .getElementById('phone')
+        .addEventListener('input', function (event) {
+          let input = event.target
+          input.value = formatPhoneNumber(input.value)
+        })
+    </script>
   </body>
 </html>
