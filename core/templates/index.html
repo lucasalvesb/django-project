@@ -27,41 +27,8 @@
         <a
           class="navbar-brand"
           href="#"
-          >Logo</a
+          >Client Register</a
         >
-        <button
-          class="navbar-toggler"
-          type="button"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                >Contact</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
     </nav>
 
     <div class="container">
@@ -114,6 +81,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
+                <h2>Register a new client</h2>
                 <label for="name">Name</label>
                 <input
                   type="text"
@@ -165,7 +133,6 @@
                   class="form-control"
                   name="phone"
                   id="phone"
-                  pattern="^\+\d{1,3}\s?\(?\d{1,4}\)?\s?\d{1,4}-?\d{1,9}$"
                   required
                 />
               </div>
@@ -203,24 +170,6 @@
         const nameRegex = /^[a-zA-Z\s]+$/
         const phoneRegex = /^\+\d{1,3}\s?\(?\d{1,4}\)?\s?\d{1,4}-?\d{1,9}$/
 
-        // Perform validations
-        if (!nameRegex.test(name)) {
-          alert('Name should only contain letters and spaces.')
-          return false
-        }
-
-        if (age > 120) {
-          alert('Age should be less than or equal to 120.')
-          return false
-        }
-
-        if (!phoneRegex.test(phone)) {
-          alert(
-            "Phone number should be in the format: '+CountryCode (AreaCode) PhoneNumber'."
-          )
-          return false
-        }
-
         // Return true to submit the form
         return true
       }
@@ -244,24 +193,6 @@
           if (input.value.length === 14) {
             document.getElementById('email').focus()
           }
-        })
-
-      // Function to format phone number
-      function formatPhoneNumber(phone) {
-        phone = phone.replace(/\D/g, '') // Remove non-digit characters
-        phone = phone.replace(
-          /^(\d{2})(\d{2})(\d{5})(\d{4})$/,
-          '+$1 ($2) $3-$4'
-        ) // Apply the desired format
-        return phone
-      }
-
-      // Event listener for phone number input
-      document
-        .getElementById('phone')
-        .addEventListener('input', function (event) {
-          let input = event.target
-          input.value = formatPhoneNumber(input.value)
         })
     </script>
   </body>
